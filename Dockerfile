@@ -3,7 +3,7 @@ WORKDIR /go/src/github.com/openshift/cluster-machine-approver
 COPY . .
 RUN make build
 
-FROM registry.ci.openshift.org/openshift/origin-v4.0:base
+FROM quay-proxy.ci.openshift.org/openshift/ci:openshift_origin-v4.0_base
 COPY --from=builder /go/src/github.com/openshift/cluster-machine-approver/machine-approver /usr/bin/
 COPY manifests /manifests
 ENTRYPOINT ["/usr/bin/machine-approver"]
